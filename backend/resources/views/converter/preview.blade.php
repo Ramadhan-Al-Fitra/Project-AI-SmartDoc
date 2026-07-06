@@ -42,14 +42,16 @@
     <div class="col-md-6 mt-4 mt-md-0">
         <div class="card p-4 h-100 text-center d-flex flex-column justify-content-center align-items-center">
             @if($history->status == 'success')
-                <div class="mb-4">
-                    <i class="fa-solid fa-file-circle-check text-success" style="font-size: 5rem;"></i>
+                <div class="text-center">
+                    <i class="fa-solid fa-file-circle-check fa-4x text-success mb-3"></i>
+                    <h2 class="text-success fw-bold">Berhasil!</h2>
+                    <p class="text-muted">File dokumen Anda telah dikonversi dan diformat ulang dengan rapi.</p>
+                    
+                    <a href="{{ route('converter.download', $history->id) }}" class="btn btn-success btn-lg mt-3 px-5 py-3 shadow-sm" style="border-radius: 10px;">
+                        <i class="fa-solid fa-download me-2"></i> Unduh<br>
+                        <small class="fw-normal">{{ $history->converted_filename }}</small>
+                    </a>
                 </div>
-                <h3 class="text-success fw-bold">Berhasil!</h3>
-                <p class="text-muted">File dokumen Anda telah dikonversi dan diformat ulang dengan rapi.</p>
-                <a href="#" class="btn btn-success btn-lg mt-3 w-100" onclick="alert('Download file: {{ $history->converted_filename }} (Fitur dummy)')">
-                    <i class="fa-solid fa-download me-2"></i> Unduh {{ $history->converted_filename }}
-                </a>
             @else
                 <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status">
                     <span class="visually-hidden">Loading...</span>
