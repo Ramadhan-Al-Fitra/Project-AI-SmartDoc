@@ -1,0 +1,366 @@
+Saya ingin membuat sebuah Project Artificial Intelligence berbasis Website sebagai tugas akhir Mata Kuliah Artificial Intelligence.
+
+Project ini dikerjakan oleh kelompok yang beranggotakan:
+
+- Ramadhan Al Fitra
+- Taufiq
+- Zikri
+
+====================================================
+
+LATAR BELAKANG
+
+Saat ini terdapat banyak website converter dokumen seperti iLovePDF, SmallPDF, PDF24, dan lain sebagainya.
+
+Namun sebagian besar website tersebut hanya melakukan konversi file secara langsung tanpa benar-benar memahami isi dokumen.
+
+Project yang akan kami bangun bukan bertujuan meniru website tersebut, melainkan membuat sebuah sistem konversi dokumen yang memanfaatkan Artificial Intelligence agar hasil konversi menjadi lebih akurat, lebih rapi, dan mampu memahami struktur dokumen sebelum dilakukan proses konversi.
+
+AI bukan hanya digunakan sebagai pelengkap, tetapi menjadi inti dari proses konversi.
+
+====================================================
+
+TUJUAN SISTEM
+
+Membangun website sederhana berbasis AI yang mampu melakukan konversi berbagai jenis dokumen dengan mempertahankan struktur, format, tabel, gambar, serta layout dokumen semaksimal mungkin.
+
+====================================================
+
+FORMAT FILE YANG DIDUKUNG
+
+Website harus mampu menerima file:
+
+- Microsoft Word (.docx)
+- Microsoft Excel (.xlsx)
+- PDF (.pdf)
+- Microsoft PowerPoint (.pptx)
+
+====================================================
+
+FITUR KONVERSI
+
+Semua format file dapat dikonversikan satu sama lain.
+
+Contohnya:
+
+Word → PDF
+PDF → Word
+
+Excel → PDF
+PDF → Excel
+
+PowerPoint → PDF
+PDF → PowerPoint
+
+Word → Excel
+Excel → Word
+
+Word → PowerPoint
+PowerPoint → Word
+
+Excel → PowerPoint
+PowerPoint → Excel
+
+dan seluruh kombinasi lainnya selama memungkinkan.
+
+====================================================
+
+PERAN AI
+
+Artificial Intelligence harus menjadi bagian utama dari sistem.
+
+AI melakukan beberapa proses berikut:
+
+1. Menganalisis isi dokumen.
+
+2. Mengenali struktur dokumen.
+
+3. Mengidentifikasi:
+   - Heading
+   - Paragraph
+   - Table
+   - Image
+   - List
+   - Numbering
+   - Hyperlink
+   - Footer
+   - Header
+
+4. Memilih metode konversi terbaik.
+
+5. Memperbaiki formatting setelah proses konversi.
+
+6. Mengurangi perubahan layout.
+
+7. Menyesuaikan ukuran font apabila terjadi pergeseran.
+
+8. Menata ulang tabel yang rusak.
+
+9. Mengoptimalkan gambar agar tidak pecah.
+
+10. Menghasilkan file dengan kualitas mendekati file asli.
+
+====================================================
+
+FITUR AI TAMBAHAN
+
+Tambahkan fitur-fitur AI berikut apabila memungkinkan.
+
+• AI Document Analysis
+
+Menampilkan ringkasan isi dokumen sebelum dikonversi.
+
+•
+
+AI Smart Formatting
+
+Memperbaiki layout secara otomatis.
+
+•
+
+AI OCR
+
+Jika PDF berupa hasil scan atau gambar, AI mampu mengubahnya menjadi teks yang dapat diedit.
+
+•
+
+AI Table Detection
+
+Mengenali tabel secara otomatis.
+
+•
+
+AI Layout Recovery
+
+Mengembalikan struktur dokumen apabila rusak.
+
+•
+
+AI Image Enhancement
+
+Memperbaiki kualitas gambar yang terdapat dalam dokumen.
+
+•
+
+AI Translation (Optional)
+
+Menerjemahkan isi dokumen sebelum dikonversi.
+
+•
+
+AI Document Summary (Optional)
+
+Membuat ringkasan dokumen.
+
+====================================================
+
+ALUR SISTEM
+
+1. User membuka website.
+
+2. User memilih jenis konversi.
+
+3. Upload file.
+
+4. AI membaca isi file.
+
+5. AI melakukan analisis struktur dokumen.
+
+6. AI memilih metode konversi.
+
+7. AI memperbaiki formatting.
+
+8. Sistem melakukan konversi.
+
+9. Preview hasil.
+
+10. Download file.
+
+====================================================
+
+OUTPUT WEBSITE
+
+Halaman Home
+
+Halaman Converter
+
+Halaman Preview
+
+Halaman Download
+
+Halaman Riwayat Konversi
+
+Halaman Tentang
+
+====================================================
+
+TEKNOLOGI YANG DAPAT DIGUNAKAN
+
+Frontend
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
+
+Backend
+- Laravel
+atau
+- Node.js
+atau
+- Python Flask
+
+AI Engine
+
+- Python
+
+Model AI yang dapat digunakan:
+
+- OpenAI GPT
+- Google Gemini
+- Llama
+- Mistral
+
+Library AI:
+
+- Transformers
+- LangChain
+- PaddleOCR
+- Tesseract OCR
+- OpenCV
+
+Library Konversi File:
+
+- LibreOffice
+- python-docx
+- PyMuPDF
+- Pandoc
+- openpyxl
+- pptx
+- unoconv
+
+====================================================
+
+DATABASE
+
+Simpan data berikut:
+
+- User
+- Riwayat Konversi
+- Jenis Konversi
+- Waktu Konversi
+- Ukuran File
+- Status Konversi
+
+====================================================
+
+FLOW AI
+
+Upload File
+
+↓
+
+Preprocessing
+
+↓
+
+AI Document Analysis
+
+↓
+
+Document Classification
+
+↓
+
+Layout Detection
+
+↓
+
+OCR (jika diperlukan)
+
+↓
+
+Smart Formatting
+
+↓
+
+Document Conversion
+
+↓
+
+AI Validation
+
+↓
+
+Preview
+
+↓
+
+Download
+
+====================================================
+
+OUTPUT YANG SAYA INGINKAN
+
+Saya ingin dibuatkan secara lengkap:
+
+1. Analisis Permasalahan
+
+2. Solusi AI
+
+3. Analisis Kebutuhan
+
+4. Functional Requirement
+
+5. Non Functional Requirement
+
+6. Use Case Diagram
+
+7. Use Case Description
+
+8. Activity Diagram
+
+9. Sequence Diagram
+
+10. Class Diagram
+
+11. ERD
+
+12. Flowchart Sistem
+
+13. Flowchart AI
+
+14. Arsitektur Sistem
+
+15. Arsitektur AI
+
+16. DFD Level 0
+
+17. DFD Level 1
+
+18. Context Diagram
+
+19. Sitemap Website
+
+20. Desain Database
+
+21. Desain API
+
+22. Wireframe Website
+
+23. UI/UX Modern
+
+24. Pembagian Modul Sistem
+
+25. Pembagian Tugas 3 Anggota Kelompok
+
+26. Roadmap Pengerjaan
+
+27. Algoritma AI yang digunakan beserta alasannya
+
+28. Dataset yang diperlukan
+
+29. Cara Training AI (jika diperlukan)
+
+30. Penjelasan mengapa project ini termasuk Artificial Intelligence, bukan sekadar website converter biasa.
+
+Semua pembahasan harus dijelaskan secara akademik, rinci, dan mudah dipahami layaknya proposal skripsi atau proposal proyek.
