@@ -53,6 +53,16 @@ class ConverterController extends Controller
         }
         $summary .= "- AI mengonversi dan menyesuaikan margin (Layout Recovery).";
 
+        // Tentukan ekstensi target berdasarkan conversion_type
+        $convType = $request->conversion_type;
+        $parts = explode('_to_', $convType);
+        $targetExt = '.pdf'; // default
+        if (count($parts) == 2) {
+            $targetFormat = $parts[1];
+            $extMap = ['pdf' => '.pdf', 'word' => '.docx', 'excel' => '.xlsx', 'powerpoint' => '.pptx'];
+            $targetExt = $extMap[$targetFormat] ?? '.pdf';
+        }
+
         // Create history entry
         $history = ConversionHistory::create([
             'original_filename' => $originalFilename,
@@ -60,7 +70,7 @@ class ConverterController extends Controller
             'file_size_kb' => (int)$size,
             'status' => 'ai_processing',
             'ai_summary' => $summary,
-            'converted_filename' => 'converted_' . pathinfo($originalFilename, PATHINFO_FILENAME) . '.pdf'
+            'converted_filename' => 'converted_' . pathinfo($originalFilename, PATHINFO_FILENAME) . $targetExt
         ]);
 
         return redirect()->route('converter.processing', ['id' => $history->id]);
@@ -106,5 +116,11 @@ class ConverterController extends Controller
     {
         $histories = ConversionHistory::orderBy('created_at', 'desc')->get();
         return view('converter.history', compact('histories'));
+    }
+
+    public function show($id)
+    {
+        $history = ConversionHistory::findOrFail($id);
+        return view('converter.show', compact('history'));
     }
 }

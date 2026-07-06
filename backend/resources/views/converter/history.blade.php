@@ -40,7 +40,8 @@
                             </td>
                             <td class="text-muted small">{{ $history->created_at->format('d M Y H:i') }}</td>
                             <td>
-                                <a href="{{ route('converter.preview', $history->id) }}" class="btn btn-sm btn-outline-primary">Lihat</a>
+                                <a href="{{ route('converter.show', $history->id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye me-1"></i> Detail AI</a>
+                                <a href="{{ route('converter.preview', $history->id) }}" class="btn btn-sm btn-outline-success"><i class="fa-solid fa-download"></i> Unduh</a>
                             </td>
                         </tr>
                         @empty

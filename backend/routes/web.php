@@ -10,3 +10,4 @@ Route::get('/process_complete/{id}', [ConverterController::class, 'process_compl
 Route::get('/preview/{id}', [ConverterController::class, 'preview'])->name('converter.preview');
 Route::get('/download/{id}', [ConverterController::class, 'download'])->name('converter.download');
 Route::get('/history', [ConverterController::class, 'history'])->name('converter.history');
+Route::get('/history/{id}', [ConverterController::class, 'show'])->name('converter.show');
