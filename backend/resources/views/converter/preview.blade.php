@@ -47,10 +47,16 @@
                     <h2 class="text-success fw-bold">Berhasil!</h2>
                     <p class="text-muted">File dokumen Anda telah dikonversi dan diformat ulang dengan rapi.</p>
                     
-                    <a href="{{ route('converter.download', $history->id) }}" class="btn btn-success btn-lg mt-3 px-5 py-3 shadow-sm" style="border-radius: 10px;">
+                    <a href="{{ route('converter.download', $history->id) }}" class="btn btn-success btn-lg mt-3 px-5 py-3 shadow-sm hover-lift" style="border-radius: 10px;">
                         <i class="fa-solid fa-download me-2"></i> Unduh<br>
                         <small class="fw-normal">{{ $history->converted_filename }}</small>
                     </a>
+                    
+                    <div class="mt-4">
+                        <a href="{{ route('converter.index') }}" class="btn btn-outline-secondary hover-lift">
+                            <i class="fa-solid fa-arrow-left me-2"></i> Kembali & Upload Ulang
+                        </a>
+                    </div>
                 </div>
             @else
                 <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status">
