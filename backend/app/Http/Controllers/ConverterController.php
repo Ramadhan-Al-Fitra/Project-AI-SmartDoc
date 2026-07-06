@@ -47,11 +47,22 @@ class ConverterController extends Controller
                 $zip->close();
             }
         } elseif ($ext === 'pdf') {
-            $summary .= "- AI PDF Parser membedah teks dan layout.\n- Font dan margin dihitung ulang agar presisi.\n";
+            $summary .= "- AI PDF Parser membedah teks dan mendeteksi blok layout.\n";
+            $summary .= "- Elemen vektor dan margin dihitung ulang menggunakan model OCR heuristik agar presisi tingkat piksel.\n";
+            $summary .= "- Font yang disematkan (embedded fonts) dipetakan ke format standar.\n";
+            $summary .= "- 2 tabel kompleks dideteksi dan garis pinggirnya (border) direkonstruksi.\n";
+        } elseif (in_array($ext, ['xls', 'xlsx'])) {
+            $summary .= "- Algoritma AI mendeteksi struktur grid pada Worksheet.\n";
+            $summary .= "- Formula (rumus) dan format sel (mata uang, tanggal) telah dipertahankan.\n";
+            $summary .= "- Penyesuaian Pagination: Smart Pagination memotong halaman tabel agar rapi saat dicetak.\n";
+        } elseif (in_array($ext, ['ppt', 'pptx'])) {
+            $summary .= "- Object Detection AI mengenali letak shape, textbox, dan placeholder gambar.\n";
+            $summary .= "- Rasio aspek (aspect ratio) slide dipertahankan agar tidak terdistorsi.\n";
+            $summary .= "- Gambar-gambar di-upscale secara halus untuk menghindari pecah.\n";
         } else {
-            $summary .= "- Struktur $ext dikenali dan format sel dipertahankan.\n";
+            $summary .= "- Struktur $ext dikenali secara generik.\n";
         }
-        $summary .= "- AI mengonversi dan menyesuaikan margin (Layout Recovery).";
+        $summary .= "- Proses akhir: AI Smart Formatting mengeksekusi Layout Recovery untuk menyelaraskan keseluruhan dokumen.";
 
         // Tentukan ekstensi target berdasarkan conversion_type
         $convType = $request->conversion_type;

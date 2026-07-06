@@ -57,7 +57,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Converter</a>
+                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('converter.index') }}">Converter</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('converter.history') }}">Riwayat</a>
