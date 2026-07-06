@@ -36,11 +36,36 @@
             padding: 40px;
             text-align: center;
             color: #0056b3;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .dropzone:hover {
             background-color: #d0e4ff;
             cursor: pointer;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.15);
+        }
+        .dropzone.dragover {
+            background-color: #cce5ff;
+            border-color: #004085;
+            transform: scale(1.02);
+        }
+        
+        /* Animasi Interaktif */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.25) !important;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
         }
     </style>
 </head>

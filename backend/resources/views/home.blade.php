@@ -9,10 +9,10 @@
             SmartDoc AI bukan sekadar alat konversi biasa. Sistem Kecerdasan Buatan kami memahami struktur dokumen Anda—mulai dari paragraf, tabel, hingga letak gambar—untuk memastikan hasil akhir yang rapi dan bebas dari pergeseran layout.
         </p>
         <div class="d-flex gap-3">
-            <a href="{{ route('converter.index') }}" class="btn btn-primary btn-lg px-4 py-3 rounded-3 shadow">
+            <a href="{{ route('converter.index') }}" class="btn btn-primary btn-lg px-4 py-3 rounded-3 shadow hover-lift">
                 <i class="fa-solid fa-wand-magic-sparkles me-2"></i> Mulai Konversi Sekarang
             </a>
-            <a href="{{ route('converter.history') }}" class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-3">
+            <a href="{{ route('converter.history') }}" class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-3 hover-lift">
                 <i class="fa-solid fa-clock-rotate-left me-2"></i> Riwayat
             </a>
         </div>
@@ -23,7 +23,7 @@
         </div>
     </div>
     
-    <div class="col-lg-6 position-relative">
+    <div class="col-lg-6 position-relative mt-5 mt-lg-0 float-animation">
         <!-- Dekorasi visual agar tidak terlihat kosong -->
         <div class="card border-0 shadow-lg" style="border-radius: 20px; overflow: hidden;">
             <div class="bg-primary text-white p-4 d-flex align-items-center justify-content-between">
