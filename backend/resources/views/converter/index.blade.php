@@ -33,7 +33,7 @@
 
                 <div class="mb-4">
                     <label class="form-label fw-bold text-primary">Unggah File</label>
-                    <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+                    <div class="dropzone hover-lift" id="dropzone" onclick="document.getElementById('fileInput').click()">
                         <i class="fa-solid fa-cloud-arrow-up fa-3x mb-3"></i>
                         <h5>Klik atau Tarik File Kesini</h5>
                         <p class="text-muted small" id="support-text">Mendukung: .docx, .pdf, .xlsx, .pptx</p>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg">
+                    <button type="submit" class="btn btn-primary btn-lg hover-lift">
                         <i class="fa-solid fa-wand-magic-sparkles me-2"></i> Konversi Sekarang
                     </button>
                 </div>
@@ -85,6 +85,26 @@
         if(this.files.length > 0) {
             dropzone.innerHTML = `<i class="fa-solid fa-file-circle-check fa-3x mb-3 text-success"></i>
                                   <h5 class="text-success">${this.files[0].name}</h5>`;
+        }
+    });
+
+    // Drag and drop interaktif
+    dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+        dropzone.classList.remove('dragover');
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        if(e.dataTransfer.files.length > 0) {
+            fileInput.files = e.dataTransfer.files;
+            dropzone.innerHTML = `<i class="fa-solid fa-file-circle-check fa-3x mb-3 text-success"></i>
+                                  <h5 class="text-success">${fileInput.files[0].name}</h5>`;
         }
     });
 </script>
