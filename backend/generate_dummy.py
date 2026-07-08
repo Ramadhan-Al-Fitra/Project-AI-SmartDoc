@@ -3,7 +3,6 @@ from fpdf import FPDF
 from docx import Document
 from openpyxl import Workbook
 from pptx import Presentation
-from pptx.util import Inches, Pt
 
 templates_dir = "storage/app/public/templates"
 os.makedirs(templates_dir, exist_ok=True)
