@@ -137,16 +137,55 @@ class ConverterController extends Controller
     public function process_complete($id)
     {
         $history = ConversionHistory::findOrFail($id);
-        $history->update([
-            'status' => 'success'
-        ]);
+        
+        // --- REAL CONVERSION LOGIC ---
+        $originalPath = storage_path('app/public/uploads/' . $history->original_filename);
+        $targetExt = strtolower(pathinfo($history->converted_filename, PATHINFO_EXTENSION));
+        // Buat nama file unik dan aman untuk browser (hilangkan spasi/karakter khusus)
+        $safeName = \Illuminate\Support\Str::slug(pathinfo($history->original_filename, PATHINFO_FILENAME), '_');
+        $convertedFilename = 'real_' . time() . '_' . $safeName . '.' . $targetExt;
+        $outputPath = storage_path('app/public/converted/' . $convertedFilename);
+        
+        // Pastikan direktori ada
+        if (!file_exists(storage_path('app/public/converted'))) {
+            mkdir(storage_path('app/public/converted'), 0755, true);
+        }
+
+        // Panggil script python
+        $pythonScript = base_path('real_converter.py');
+        $conversionType = $history->type_conversion; // e.g. word_to_pdf
+        
+        // Escape argumen untuk keamanan
+        $cmd = "python " . escapeshellarg($pythonScript) . " " . escapeshellarg($originalPath) . " " . escapeshellarg($outputPath) . " " . escapeshellarg($conversionType);
+        $output = shell_exec($cmd . " 2>&1");
+        
+        if (file_exists($outputPath)) {
+            $history->update([
+                'status' => 'success',
+                'converted_filename' => $convertedFilename // Update dengan file asli
+            ]);
+        } else {
+            \Log::error("Python conversion failed: " . $output);
+            $history->update([
+                'status' => 'failed'
+            ]);
+            return redirect()->route('converter.preview', ['id' => $history->id])
+                             ->withErrors(['msg' => 'Gagal mengonversi file. Pastikan format didukung.']);
+        }
+
         return redirect()->route('converter.preview', ['id' => $history->id])
-                         ->with('success', 'File berhasil diproses oleh AI dan siap diunduh.');
+                         ->with('success', 'File berhasil dikonversi dan siap diunduh.');
     }
 
     public function download($id)
     {
         $history = ConversionHistory::findOrFail($id);
+        
+        // Cek file hasil konversi nyata terlebih dahulu
+        $realConvertedPath = storage_path('app/public/converted/' . $history->converted_filename);
+        if (file_exists($realConvertedPath)) {
+            return response()->download($realConvertedPath, $history->converted_filename);
+        }
         
         // Ambil ekstensi target dari nama file hasil konversi
         $targetExt = strtolower(pathinfo($history->converted_filename, PATHINFO_EXTENSION));
