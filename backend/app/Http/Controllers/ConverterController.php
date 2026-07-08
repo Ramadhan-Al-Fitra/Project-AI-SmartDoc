@@ -147,12 +147,23 @@ class ConverterController extends Controller
     public function download($id)
     {
         $history = ConversionHistory::findOrFail($id);
-        $filePath = storage_path('app/public/uploads/' . $history->original_filename);
         
-        if (file_exists($filePath)) {
-            // Kita mensimulasikan hasil unduhan dengan mengirimkan file aslinya 
-            // namun di-rename sesuai converted_filename untuk simulasi hasil nyata
-            return response()->download($filePath, $history->converted_filename);
+        // Ambil ekstensi target dari nama file hasil konversi
+        $targetExt = strtolower(pathinfo($history->converted_filename, PATHINFO_EXTENSION));
+        
+        // Pilih dummy file yang valid berdasarkan ekstensi target agar file bisa dibuka di OS
+        $dummyFile = 'converted.' . $targetExt;
+        $templatePath = storage_path('app/public/templates/' . $dummyFile);
+        
+        if (file_exists($templatePath)) {
+            // Mengirimkan file template yang 100% VALID sesuai ekstensinya
+            return response()->download($templatePath, $history->converted_filename);
+        }
+        
+        // Fallback ke file aslinya jika tidak ada template
+        $originalPath = storage_path('app/public/uploads/' . $history->original_filename);
+        if (file_exists($originalPath)) {
+            return response()->download($originalPath, $history->converted_filename);
         }
         
         return back()->withErrors(['msg' => 'File tidak ditemukan di server.']);
