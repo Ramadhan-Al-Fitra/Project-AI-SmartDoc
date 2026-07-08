@@ -141,9 +141,8 @@ class ConverterController extends Controller
         // --- REAL CONVERSION LOGIC ---
         $originalPath = storage_path('app/public/uploads/' . $history->original_filename);
         $targetExt = strtolower(pathinfo($history->converted_filename, PATHINFO_EXTENSION));
-        // Buat nama file unik dan aman untuk browser (hilangkan spasi/karakter khusus)
-        $safeName = \Illuminate\Support\Str::slug(pathinfo($history->original_filename, PATHINFO_FILENAME), '_');
-        $convertedFilename = 'real_' . time() . '_' . $safeName . '.' . $targetExt;
+        // Menggunakan format converted_(nama_asli) sesuai permintaan
+        $convertedFilename = 'converted_' . pathinfo($history->original_filename, PATHINFO_FILENAME) . '.' . $targetExt;
         $outputPath = storage_path('app/public/converted/' . $convertedFilename);
         
         // Pastikan direktori ada
