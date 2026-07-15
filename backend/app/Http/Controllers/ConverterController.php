@@ -136,6 +136,9 @@ class ConverterController extends Controller
 
     public function process_complete($id)
     {
+        // Meningkatkan batas waktu eksekusi agar tidak timeout (0 = tanpa batas)
+        set_time_limit(0);
+
         $history = ConversionHistory::findOrFail($id);
         
         // --- REAL CONVERSION LOGIC ---
